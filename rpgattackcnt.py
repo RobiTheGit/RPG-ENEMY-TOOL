@@ -28,23 +28,32 @@ class App(tk.Frame):
         mini = tk.IntVar()
         maxi = tk.IntVar()
         die = tk.IntVar()
+#==============================================================================                          
         leftframe = customtkinter.CTkFrame(
         root
         )        
         leftframe.pack(side = LEFT, fill=BOTH, anchor = NE, padx = 10, expand=1)
         
+        leftframe2 = customtkinter.CTkFrame(
+        root
+        )        
+        leftframe2.pack(side = LEFT, fill=BOTH, anchor = NE, padx = 10, expand=1) 
+              
         topframe = customtkinter.CTkFrame(
         root 
         )
-        topframe.pack(side = TOP, fill=X, expand=1)
+        topframe.pack(side = TOP, anchor = N, fill=X, expand=1)
                 
         bottomframe = customtkinter.CTkFrame(
         root 
         )
-        bottomframe.pack(side = TOP, fill=BOTH, pady = 5, expand=1)
+        bottomframe.pack(side = BOTTOM, fill=BOTH, pady = 5, expand=1)
         l0 = customtkinter.CTkLabel(topframe, text="RPG Enemy Damage Tool", font = ('Z003', 20))
         l0.pack()
-                               
+#==============================================================================                                 
+        l9 = customtkinter.CTkLabel(leftframe, text="Player Stats", font = ('Bold', 20))
+        l9.pack()
+                                       
         l1 = customtkinter.CTkLabel(leftframe, text="Die min and max (To hit)", font = ('Z003', 20))
         l1.pack()
         self.entrythingy = customtkinter.CTkEntry(leftframe, placeholder_text="1", font = ('Z003', 20))
@@ -58,7 +67,7 @@ class App(tk.Frame):
         self.contents2 = tk.StringVar()
         self.contents2.set("20")
         self.entrythingy2["textvariable"] = self.contents2
-        
+#==============================================================================                                 
         l5 = customtkinter.CTkLabel(leftframe, text="Bonuses", font = ('Z003', 20))
         l5.pack()
         
@@ -75,7 +84,7 @@ class App(tk.Frame):
         self.contents3 = tk.StringVar()
         self.contents3.set("")
         self.entrythingy3["textvariable"] = self.contents3
- #==============================================================================                          
+#==============================================================================                          
         l6 = customtkinter.CTkLabel(leftframe, text="Damage Dies\n", font = ('Z003', 20))
         l6.pack()
         
@@ -135,29 +144,24 @@ class App(tk.Frame):
         self.contents11.set("0")
         self.entrythingy11["textvariable"] = self.contents11                  
 #==============================================================================                    
-
-        l7 = customtkinter.CTkLabel(leftframe, text="Enemy HP", font = ('Z003', 20))
+        l8 = customtkinter.CTkLabel(leftframe2, text="Enemy Stats", font = ('Bold', 20))
+        l8.pack() 
+        l7 = customtkinter.CTkLabel(leftframe2, text="Enemy HP", font = ('Z003', 20))
         l7.pack()         
-        self.entrythingy6 = customtkinter.CTkEntry(leftframe, placeholder_text="100", font = ('Z003', 20))
+        self.entrythingy6 = customtkinter.CTkEntry(leftframe2, placeholder_text="1000", font = ('Z003', 20))
         self.entrythingy6.pack()
         self.contents6 = tk.StringVar()
-        self.contents6.set("100")
+        self.contents6.set("1000")
         self.entrythingy6["textvariable"] = self.contents6  
         
-        l4 = customtkinter.CTkLabel(leftframe, text="Enemy Armor Class(AC)", font = ('Z003', 20))
+        l4 = customtkinter.CTkLabel(leftframe2, text="Enemy Armor Class(AC)", font = ('Z003', 20))
         l4.pack()         
-        self.entrythingy7 = customtkinter.CTkEntry(leftframe, placeholder_text="10", font = ('Z003', 20))
+        self.entrythingy7 = customtkinter.CTkEntry(leftframe2, placeholder_text="10", font = ('Z003', 20))
         self.entrythingy7.pack()
         self.contents7 = tk.StringVar()
         self.contents7.set("10")
         self.entrythingy7["textvariable"] = self.contents7 
-                                       
-        c1 = customtkinter.CTkCheckBox(leftframe, text='Lucky',variable=luck, onvalue=True, offvalue=False, command=self.enablelr2s, font = ('Z003', 20))
-        c1.pack()
-        
-        c2 = customtkinter.CTkCheckBox(leftframe, text='Lucky Removes 2\'s',variable=lucktype, onvalue=2, offvalue=1, state='disabled', font = ('Z003', 20))
-        c2.pack()  
-             
+ #==============================================================================                                  
         B = customtkinter.CTkButton(topframe, 
         text = 'Run Simulation',
         command = self.run, 
@@ -170,7 +174,15 @@ class App(tk.Frame):
         state='disabled',
         height = 400,
         width = 400
-        )  
+        )        
+                                         
+        c1 = customtkinter.CTkCheckBox(leftframe, text='Lucky',variable=luck, onvalue=True, offvalue=False, command=self.enablelr2s, font = ('Z003', 20))
+        c1.pack()
+        
+        c2 = customtkinter.CTkCheckBox(leftframe, text='Lucky Removes 2\'s',variable=lucktype, onvalue=2, offvalue=1, state='disabled', font = ('Z003', 20))
+        c2.pack()  
+             
+
         output.pack()
         ToolTip(l1, msg="Set the Lowest and Highest number your Hit(roll to hit) die")
         ToolTip(l2, msg="Add an interger to the total of the damage of the die")
@@ -178,6 +190,8 @@ class App(tk.Frame):
         ToolTip(l5, msg="Add a modifier(positive) to the roll to hit")
         ToolTip(l6, msg="Select The ammount of each die for one turn's of damage")
         ToolTip(l7, msg="Ammount of Hitpoints the enemy has")
+        ToolTip(l8, msg="Enemy Armor Class, HP, etc")
+        ToolTip(l9, msg="Player Dies, Bonuses, and Lucky")        
         ToolTip(c1, msg="Enable the Lucky Trait, this one is specifically the halfing lucky racial trait")
         ToolTip(c2, msg="In the lucky trait, make it so not only it rerolls on 1's, but it also rerolls on 2's")
         ToolTip(B, msg="Run The Test Battle To get averages, misses, and rolls to kill")        
@@ -204,13 +218,14 @@ class App(tk.Frame):
     def exit(self):
         sys.exit(0)            
     def run(self):
+#Get The Variables
         mini = self.entrythingy.get()
         maxi = self.entrythingy2.get()
         die2 = self.entrythingyA.get()                
         mods = self.entrythingy3.get() 
         HP = self.entrythingy6.get()
         AC = self.entrythingy7.get()
-        
+#All the attack die variables        
         d4cnt = self.entrythingyB.get() 
         d6cnt = self.entrythingyC.get()  
         d8cnt = self.entrythingyD.get() 
@@ -218,7 +233,7 @@ class App(tk.Frame):
         d12cnt = self.entrythingyF.get() 
         d20cnt = self.entrythingy10.get()
         d100cnt = self.entrythingy11.get() 
-                                    
+#Put variables in the calculation script                                    
         attackroll.mini = mini
         attackroll.maxi = maxi
         attackroll.die2 = die2
@@ -233,7 +248,9 @@ class App(tk.Frame):
         attackroll.d12 = d12cnt
         attackroll.d20 = d20cnt
         attackroll.d100 = d100cnt
-
+        
+        output.configure(state='normal')
+        output.delete(1.0, END)
         self.setluck()
         self.setlucktype()
         attackroll.main()
@@ -246,7 +263,7 @@ class App(tk.Frame):
 if __name__ == "__main__":
     title = "RPG Enemy Tool"
     root = customtkinter.CTk(className = "Rpg Enemy Tool")
-    root.geometry('600x1000')
+    root.geometry('1000x1000')
     myapp = App(root)
     myapp.master.title(title)
     myapp.mainloop()

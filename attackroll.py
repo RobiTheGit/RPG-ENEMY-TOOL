@@ -133,7 +133,7 @@ def main():
     try:
         hp = int(hp)
     except:
-        hp = 100
+        hp = 1000
     global x
     x = 0   
     try:
@@ -218,37 +218,47 @@ def DoMath():
     global ortherdie
     global numlist2
     global temptnumlist2 
-    for y in range(d4):
-        num = random.randint(1,4) 
-        ortherdie.append(num)     
-    for y in range(d6):
-        num = random.randint(1,6) 
-        ortherdie.append(num)           
-    for y in range(d8):
-        num = random.randint(1,8)      
-        ortherdie.append(num)
-    for y in range(d10):  
-        num = random.randint(1,10)    
-        ortherdie.append(num)  
-    for y in range(d12):
-        num = random.randint(1,12)      
-        ortherdie.append(num)
-    for y in range(d20): 
-        num = random.randint(1,20)     
-        if luck == True:
-            if lucktype == 1:
-                if num == 1:
-                   num = random.randint(1,20)
-                   ortherdie.append(num)
-            if lucktype == 2:
-                if num == 1 or num == 2:
-                   num = random.randint(1,20)
-                   ortherdie.append(num)
-            else: 
-                ortherdie.append(num)
-    for y in range(d100): 
-        num = random.randint(1,100)     
-        ortherdie.append(num)    
+    if d4 != 0:
+        for y in range(d4):
+            num = random.randint(1,4) 
+            ortherdie.append(num)   
+    if d6 != 0:  
+        for y in range(d6):
+            num = random.randint(1,6) 
+            ortherdie.append(num)           
+    if d8 != 0:
+        for y in range(d8):
+            num = random.randint(1,8)      
+            ortherdie.append(num)
+    if d10 != 0:
+        for y in range(d10):  
+            num = random.randint(1,10)    
+            ortherdie.append(num)  
+    if d12 != 0:
+        for y in range(d12):
+            num = random.randint(1,12)      
+            ortherdie.append(num)
+    if d20 != 0:
+        for y in range(d20): 
+            if luck == True:
+                num = random.randint(1,20)     
+                if lucktype == 1:
+                    if num == 1:
+                       num = random.randint(1,20)
+                       ortherdie.append(num)
+                if lucktype == 2:
+                    if num == 1 or num == 2:
+                       num = random.randint(1,20)
+                       ortherdie.append(num)
+                else: 
+                    ortherdie.append(num)
+            else:
+                num = random.randint(1,20)
+                ortherdie.append(num)                 
+    if d100 != 0:
+        for y in range(d100): 
+            num = random.randint(1,100)     
+            ortherdie.append(num)    
                                                                                                                                                             
     num = sum(ortherdie)
     num += mods
@@ -257,8 +267,11 @@ def DoMath():
     temptnumlist.clear()
     ortherdie.clear()
     if hp > 0:
-        ToHit()
-                                             
+        try:
+            ToHit()
+        except:
+            BeDone() 
+                                                        
     normal = 'Rolls:'
     numbers = f'{numlist}\nAttacked: {len(numlist)}'
     numbers2 = f'{numlist2}\nMissed :{len(numlist2)}'
@@ -277,3 +290,6 @@ Numbers That Missed: {numbers2}
 {avghitoutput}    
 Rolls it took to finish the battle: {numbers3}
     """
+def BeDone():
+    opt = ''
+    pass
