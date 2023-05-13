@@ -267,3 +267,6 @@ if __name__ == "__main__":
     myapp = App(root)
     myapp.master.title(title)
     myapp.mainloop()
+else:
+    print("Badonkie donk!\n Run the script by itself please!")
+    sys.exit(0)

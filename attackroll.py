@@ -1,5 +1,4 @@
 import random
-import rpgattackcnt
 import re
 #This is just doing all of the math for the gui version, please don't run this on it's own, it wont do anything if you do, well acutally it will, but you wouldn't be able to tell
 #Basically, it would run the simulation with the deaults, and no output, I have tested it
@@ -48,21 +47,19 @@ def main():
     except:
         die2 = 1        
     try:
-        mini = abs(int(mini))
+        if mini != 0:
+            mini = abs(int(mini))
+        else:
+            mini = 1
     except:
         mini = 1
     try:
-        maxi = abs(int(maxi))
+        if maxi != 0:
+            maxi = abs(int(maxi))
+        else:
+            maxi = 20
     except:
         maxi = 20
-    try:
-        mini2 = abs(int(mini2))
-    except:
-        mini2 = 1
-    try:
-        maxi2 = abs(int(maxi2))
-    except:
-        maxi2 = 20
     try:
         mods = abs(int(mods))
     except:
@@ -123,7 +120,8 @@ def main():
             d100 = 0      
     except:
         d100 = 0 
-                                        
+    if d4 == 0 and d6 == 0 and d8 == 0 and d10 == 0 and d12 == 0 and d20 == 0 and  d100 == 0:
+        BeDone()
     numlist = []
     temptnumlist = []     
     temptnumlist2 = []     
@@ -145,8 +143,6 @@ def ToHit():
     global luck
     global mini
     global maxi
-    global mini2
-    global maxi2
     global numlist
     global temptnumlist      
     global mods
@@ -196,8 +192,6 @@ def DoMath():
     global luck
     global mini
     global maxi
-    global mini2
-    global maxi2
     global numlist
     global temptnumlist      
     global mods
