@@ -120,7 +120,7 @@ def main():
             d100 = 0      
     except:
         d100 = 0 
-    if d4 == 0 and d6 == 0 and d8 == 0 and d10 == 0 and d12 == 0 and d20 == 0 and  d100 == 0:
+    if int(d4) == 0 and int(d6) == 0 and int(d8) == 0 and int(d10) == 0 and int(d12) == 0 and int(d20) == 0 and  int(d100) == 0:
         BeDone()
     numlist = []
     temptnumlist = []     

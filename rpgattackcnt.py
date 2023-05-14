@@ -1,10 +1,12 @@
 #!/usr/bin/python3
+
 import random
 from tkinter import *
 import customtkinter
 import tkinter as tk
 import attackroll
 import sys
+import getpass
 from tktooltip import ToolTip
 global output
 class App(tk.Frame):
@@ -248,7 +250,6 @@ class App(tk.Frame):
         attackroll.d12 = d12cnt
         attackroll.d20 = d20cnt
         attackroll.d100 = d100cnt
-        
         output.configure(state='normal')
         output.delete(1.0, END)
         self.setluck()
@@ -257,9 +258,9 @@ class App(tk.Frame):
         output.configure(state='normal')
         output.delete(1.0, END)
         str1 = attackroll.opt
+        output.insert(END, f"{getpass.getuser().title()} VS Training Dummy")
         output.insert(END, str1) 
-        output.configure(state='disabled')  
-            
+        output.configure(state='disabled') 
 if __name__ == "__main__":
     title = "RPG Enemy Tool"
     root = customtkinter.CTk(className = "Rpg Enemy Tool")
@@ -268,5 +269,10 @@ if __name__ == "__main__":
     myapp.master.title(title)
     myapp.mainloop()
 else:
-    print("Badonkie donk!\n Run the script by itself please!")
-    sys.exit(0)
+    print("Badonkie donk!\n Run the script by itself please!\n If you are making a tool that encorparates this, you can make it use exec('rpgattackcnt.py') if the tool is in python, or you are usign python to run it, or you can delete this text, I won't bite.")
+    title = "RPG Enemy Tool"
+    root = customtkinter.CTk(className = "Rpg Enemy Tool")
+    root.geometry('1000x1000')
+    myapp = App(root)
+    myapp.master.title(title)
+    myapp.mainloop()
