@@ -50,8 +50,8 @@ class App(tk.Frame):
         root 
         )
         bottomframe.pack(side = BOTTOM, fill=BOTH, pady = 5, expand=1)
-        l0 = customtkinter.CTkLabel(topframe, text="RPG Enemy Damage Tool", font = ('Z003', 20))
-        l0.pack()
+        Title = customtkinter.CTkLabel(topframe, text="RPG Enemy Damage Tool", font = ('Z003', 20))
+        Title.pack()
 #==============================================================================                                 
         YouStatsLabel = customtkinter.CTkLabel(leftframe, text="Player Stats", font = ('Bold', 20))
         YouStatsLabel.pack()
