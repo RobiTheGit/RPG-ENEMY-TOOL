@@ -269,7 +269,7 @@ if __name__ == "__main__":
     myapp.master.title(title)
     myapp.mainloop()
 else:
-    print("Badonkie donk!\n Run the script by itself please!\n If you are making a tool that encorparates this, you can make it use exec('rpgattackcnt.py') if the tool is in python, or you are usign python to run it, or you can delete this text, I won't bite.")
+    print("Badonkie donk!\n Run the script by itself please!\n If you are making a tool that encorparates this, you can make it use exec('rpgattackcnt.py') if the tool is in python, or you are using python to run it, or you can delete this text, I won't bite\n\nLoki the dogo says nothing.")
     title = "RPG Enemy Tool"
     root = customtkinter.CTk(className = "Rpg Enemy Tool")
     root.geometry('1000x1000')
